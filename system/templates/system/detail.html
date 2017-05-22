@@ -1,0 +1,16 @@
+{% if supplier_type %}
+    <h1>{{ supplier_type.suppliertype_name }}</h1>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+<form action="{% url 'system:vote' supplier_type.id if supplier_type  %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br/>
+    {% endfor %}
+    <input type="submit" value="Vote"/>
+</form>
+

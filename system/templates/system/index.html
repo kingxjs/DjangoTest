@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'system/style.css' %}"/>
+
+<a href="{% url 'system:detail'%}">新建</a>
+<table>
+    <thead>
+    <tr>
+        <th>类型名称</th>
+        <th>权重</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if supplier_type_list %}
+        {% for supplier_type in supplier_type_list %}
+            <tr>
+                <td>{{ supplier_type.suppliertype_name }}</td>
+                <td>{{ supplier_type.suppliertype_sort }}</td>
+                <td>{{ supplier_type.suppliertype_status }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+    </tbody>
+</table>
